@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:alpine
+    command: ["postgres", "-c", "log_statement=all"]
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - "POSTGRES_PASSWORD=nft_store_pw"
+      - "POSTGRES_USER=nft_store"
+    ports:
+      - "5432:5432"
